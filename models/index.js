@@ -1,34 +1,34 @@
 const User = require("./User");
-const Posts = require("./Post");
-const Comments = require("./Comments");
+const Post = require("./Post");
+const Comment = require("./Comment");
 
 User.hasMany(Post, {
   foreignKey: "user_id",
   onDelete: "CASCADE",
 });
-User.hasMany(Comments{
-  foreignKey: 'user_id'
-  onDelete: "Cascade"
-})
+User.hasMany(Comment, {
+  foreignKey: "user_id",
+  onDelete: "CASCADE",
+});
 Post.belongsTo(User, {
   foreignKey: "user_id",
   onDelete: "CASCADE",
 });
-Posts.hasMany(Comments,{
+Post.hasMany(Comment, {
   foreignKey: "post_Id",
-  onDelete: "Cascade"
-})
-Comments.belongsTo(Post, {
+  onDelete: "Cascade",
+});
+Comment.belongsTo(Post, {
   foreignKey: "post_id",
   onDelete: "CASCADE",
 });
 
-Comments.belongsTo(User{
-  foreignKey:"user_id",
-  onDelete: "CASCADE"
-})
+Comment.belongsTo(User, {
+  foreignKey: "user_id",
+  onDelete: "CASCADE",
+});
 
-module.exports = { User, Post, Comments };
+module.exports = { User, Post, Comment };
 
 // ```md
 // GIVEN a CMS-style blog site

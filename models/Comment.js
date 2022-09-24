@@ -3,9 +3,8 @@ const sequelize = require("../config/connection");
 const bycrpt = require("bcrypt");
 // const User = sequelize.define(
 //   "user",
-class Post extends Model {}
-
-Post.init(
+class Comment extends Model {}
+Comment.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -22,17 +21,16 @@ Post.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       reference: {
-        Model: "User",
+        model: "user",
         key: "id",
       },
     },
-
-    password: {
-      type: DataTypes.STRING,
+    post_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      Validate: {
-        len: [8, 30],
-        isAlphanumeric: true,
+      reference: {
+        model: "Post",
+        key: "id",
       },
     },
   },
@@ -40,9 +38,9 @@ Post.init(
     sequelize: sequelize,
     timeestamps: false,
     freeseTableName: true,
-    modelName: "Post",
+    modelName: "Comment",
     underscored: true,
   }
 );
 
-module.exports = Post;
+module.exports = Comment;
